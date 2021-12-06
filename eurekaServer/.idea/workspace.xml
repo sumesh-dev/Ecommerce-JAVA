@@ -6,11 +6,77 @@
   <component name="ChangeListManager">
     <list default="true" id="304b433d-306b-48fd-b706-e65014fd2ebc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eurekaServer/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fiegnClient/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fiegnClient/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fiegnClient/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fiegnClient/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fiegnClient/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fiegnClient/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fiegnClient/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fiegnClient/src/main/kotlin/com/ecommerce/fiegnClient/FiegnClientApplication.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fiegnClient/src/main/kotlin/com/ecommerce/fiegnClient/client/UserClient.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fiegnClient/src/main/kotlin/com/ecommerce/fiegnClient/config/JwtRequestFilter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fiegnClient/src/main/kotlin/com/ecommerce/fiegnClient/config/WebSecurityConfig.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fiegnClient/src/main/kotlin/com/ecommerce/fiegnClient/controller/UserController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fiegnClient/src/main/kotlin/com/ecommerce/fiegnClient/dto/ProductResponse.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fiegnClient/src/main/kotlin/com/ecommerce/fiegnClient/dto/UserResponse.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fiegnClient/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fiegnClient/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fiegnClient/src/test/kotlin/com/ecommerce/fiegnClient/FiegnClientApplicationTests.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/kotlin/com/ecommerce/loginauthenticationservice/LoginAuthenticationServiceApplication.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/kotlin/com/ecommerce/loginauthenticationservice/config/JwtRequestFilter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/kotlin/com/ecommerce/loginauthenticationservice/config/WebSecurityConfig.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/kotlin/com/ecommerce/loginauthenticationservice/controller/CartController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/kotlin/com/ecommerce/loginauthenticationservice/controller/JwtAuthenticationController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/kotlin/com/ecommerce/loginauthenticationservice/controller/UserController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/kotlin/com/ecommerce/loginauthenticationservice/dao/IUserRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/kotlin/com/ecommerce/loginauthenticationservice/helper/JwtTokenUtil.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/kotlin/com/ecommerce/loginauthenticationservice/models/JwtRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/kotlin/com/ecommerce/loginauthenticationservice/models/JwtResponse.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/kotlin/com/ecommerce/loginauthenticationservice/models/Product.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/kotlin/com/ecommerce/loginauthenticationservice/models/UserDao.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/kotlin/com/ecommerce/loginauthenticationservice/service/CartService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/kotlin/com/ecommerce/loginauthenticationservice/service/CartServiceImple.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/kotlin/com/ecommerce/loginauthenticationservice/service/CustomUserDetailsService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/kotlin/com/ecommerce/loginauthenticationservice/service/IUserService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/kotlin/com/ecommerce/loginauthenticationservice/service/UserServiceImpl.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service - Copy/src/test/kotlin/com/ecommerce/loginauthenticationservice/LoginAuthenticationServiceApplicationTests.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../login-authentication-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../login-authentication-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/LoginAuthenticationServiceApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/LoginAuthenticationServiceApplication.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/config/JwtAuthenticationEntryPoint.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/config/JwtRequestFilter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/config/JwtTokenUtil.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/config/WebSecurityConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/config/WebSecurityConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/controller/CartController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/controller/JwtAuthenticationController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/controller/UserController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/dao/IUserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/dao/IUserRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/models/Product.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/models/UserDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/models/UserDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/service/CartService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/service/CartServiceImple.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/service/CustomUserDetailsService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/service/CustomUserDetailsService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/service/IUserService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/service/IUserService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/service/UserServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../login-authentication-service/src/main/kotlin/com/ecommerce/loginauthenticationservice/service/UserServiceImpl.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../login-authentication-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../login-authentication-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login-authentication-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../login-authentication-service/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../productservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../productservice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../productservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../productservice/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../productservice/src/main/kotlin/com/sumesh/productservice/controller/ProductController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../productservice/src/main/kotlin/com/sumesh/productservice/controller/ProductController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../productservice/src/main/kotlin/com/sumesh/productservice/dao/ProductRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../productservice/src/main/kotlin/com/sumesh/productservice/dao/ProductRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../productservice/src/main/kotlin/com/sumesh/productservice/entity/Product.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../productservice/src/main/kotlin/com/sumesh/productservice/model/Product.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../productservice/src/main/kotlin/com/sumesh/productservice/service/IProductService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../productservice/src/main/kotlin/com/sumesh/productservice/service/IProductService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../productservice/src/main/kotlin/com/sumesh/productservice/service/ProductServiceImple.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../productservice/src/main/kotlin/com/sumesh/productservice/service/ProductServiceImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../productservice/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../productservice/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,5 +121,17 @@
       <updated>1638003781502</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

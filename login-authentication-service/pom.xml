@@ -12,7 +12,7 @@
 	<artifactId>login-authentication-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>login-authentication-service</name>
-	<description>This service is for creating and managing account</description>
+	<description>This microservice is for authenticate and register acccount</description>
 	<properties>
 		<java.version>11</java.version>
 		<kotlin.version>1.6.0</kotlin.version>
@@ -82,6 +82,10 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 	</dependencies>
 

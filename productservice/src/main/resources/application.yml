@@ -1,10 +1,18 @@
 server:
-  port: 9002
+  port: 9003
 
 spring:
   application:
     name: product-service
+    data:
+      mongodb:
+        host: localhost
+        port: 27017
+        database: ecommerce
 
 eureka:
   instance:
     hostname: localhost
+
+jwt:
+  secret: "asdfghjkikjuhygfrd"

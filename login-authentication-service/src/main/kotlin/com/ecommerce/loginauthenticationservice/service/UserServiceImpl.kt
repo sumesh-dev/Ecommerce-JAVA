@@ -12,37 +12,10 @@ class UserServiceImpl :IUserService {
     private lateinit var userRepository: IUserRepository
 
     override fun addUser(userDao: UserDao): String? {
-//         try{
-//            userRepository.findByEmail(user.email)
-//            return "user already exist"
-//        }
-//        catch () {
-            userRepository.save(userDao)
-            return "user created successfully"
-//        }
+        return if (userRepository.findByEmail(userDao.email)==null) {
+            userRepository.save(UserDao(userDao.firstName,userDao.lastName,userDao.email,userDao.password,userDao.role,null))
+            "user created successfully"
+        } else
+            "user already have account with this mail id "
     }
-
-    override fun getUserByEmail(email: String): Any? {
-        return userRepository.findByEmail(email)
-    }
-
-    override fun deleteUserByEmail(email: String): String {
-        userRepository.deleteByEmail(email)
-        return "user deleted successfully"
-    }
-
-    override fun getAllSellers(): MutableList<UserDao>? {
-        return userRepository.findAllSeller()
-    }
-
-    override fun getAllCustomer(): MutableList<UserDao>? {
-        return userRepository.findAllCustomer()
-    }
-
-    override fun updateUserByEmail(email: String, userDao: UserDao): String {
-        userRepository.deleteByEmail(email)
-        userRepository.save(userDao)
-        return "user updated successfully"
-    }
-
 }

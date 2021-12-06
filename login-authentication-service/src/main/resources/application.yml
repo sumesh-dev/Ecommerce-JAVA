@@ -4,6 +4,17 @@ server:
 spring:
   application:
     name: login-authentication
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: ecommerce
+
 eureka:
   instance:
     hostname: localhost
+
+jwt:
+  secret: "asdfghjkikjuhygfrd"
+
+
