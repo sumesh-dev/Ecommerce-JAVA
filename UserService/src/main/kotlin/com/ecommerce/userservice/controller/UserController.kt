@@ -4,6 +4,7 @@ import com.ecommerce.userservice.config.JwtRequestFilter
 import com.ecommerce.userservice.dao.IUserRepository
 import com.ecommerce.userservice.models.UserDao
 import com.ecommerce.userservice.service.IUserService
+import org.bson.types.ObjectId
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -47,4 +48,10 @@ class UserController {
     fun getAllSeller(): ResponseEntity<Any> {
         return ResponseEntity<Any>(iUserService.getAllSellers(), HttpStatus.OK)
     }
+
+//    @CrossOrigin("http://localhost:9005")
+//    @GetMapping("/orders/updated/{email}/{id}")
+//    fun orderUpdated(@PathVariable email:String,@PathVariable id: ObjectId):String{
+//        return iUserService.updateOrder(email,id)
+//    }
 }

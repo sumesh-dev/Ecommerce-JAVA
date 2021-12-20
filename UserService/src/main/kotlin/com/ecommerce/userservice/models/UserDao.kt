@@ -10,7 +10,7 @@ import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 
 
-@Document("users")
+@Document("Users")
 class UserDao{
 
     @Autowired
@@ -39,7 +39,7 @@ class UserDao{
 //    @DocumentReference(collection = "Products")
     var productInCart: MutableList<ObjectId>?= mutableListOf<ObjectId>()
 //    @DocumentReference
-//     var orders: List<ObjectId>? = null
+//     var orders: MutableList<ObjectId>? = mutableListOf<ObjectId>()
 
     constructor(
         _id: ObjectId, firstName: String, lastName: String,email: String, password: String, role: String, productInCart:ObjectId?)
@@ -54,7 +54,9 @@ class UserDao{
         else {
             this.password = this.bCryptPasswordEncoder.encode(password)
         }
-        this.role = "ROLE_"+role.lowercase()
+        if(!role.startsWith("ROLE")){
+            this.role = "ROLE_"+role.lowercase()
+        }
         if (productInCart != null) {
             this.productInCart?.add(productInCart)
         }
@@ -66,13 +68,18 @@ class UserDao{
         this.firstName = firstName
         this.lastName = lastName
         this.email = email
-        if (password.startsWith("$")){
+        if (password.length > 30){
             this.password = password
         }
         else {
             this.password = this.bCryptPasswordEncoder.encode(password)
         }
-        this.role = "ROLE_"+role.lowercase()
+        if(!role.startsWith("ROLE")){
+            this.role = "ROLE_"+role.lowercase()
+        }
+        else{
+            this.role = role.lowercase()
+        }
         if (productInCart != null) {
             this.productInCart?.add(productInCart)
         }
@@ -80,9 +87,9 @@ class UserDao{
 
     constructor()
 
-//    override fun toString(): String {
-//        return "UserDao(bCryptPasswordEncoder=$bCryptPasswordEncoder, _id=$_id, firstName='$firstName', lastName='$lastName', email='$email', password='$password', role='$role', productInCart=$productInCart)"
-//    }
+    override fun toString(): String {
+        return "UserDao(firstName='$firstName', lastName='$lastName', email='$email', password='$password', role='$role', productInCart=$productInCart)"
+    }
 
 
 }

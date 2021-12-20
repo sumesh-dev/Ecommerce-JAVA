@@ -4,15 +4,43 @@ server:
 spring:
   application:
     name: product-service
-    data:
-      mongodb:
-        host: localhost
-        port: 27017
-        database: ecommerce
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 2MB
+      max-request-size: 20MB
+  data:
+    mongodb:
+      uri: mongodb+srv://sumesh_spring:sumesh123@cluster0.roe8a.mongodb.net/ecommerce?retryWrites=true&w=majority
+#        host: localhost
+#        port: 27017
+#        database: ecommerce
 
 eureka:
   instance:
     hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
 
 jwt:
   secret: "asdfghjkikjuhygfrd"
+
+cloud:
+  aws:
+    credentials:
+      access-key: AKIATHQTSD2T7KRLYPHR
+      secret-key: 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
+    region:
+      static: ap-south-1
+    stack:
+      auto: false
+
+aws:
+  s3:
+    bucket: ecommerce-image-bucket1
+
+#Access Key ID:
+#  AKIATHQTSD2T7KRLYPHR
+#Secret Access Key:
+#  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

@@ -41,12 +41,13 @@ class JwtRequestFilter : OncePerRequestFilter() {
 
         var username: String? = null
         var jwtToken: String? = cookie?.value
-        println(jwtToken)
+//        println(jwtToken)
         if (jwtToken != null) {
             try {
                 username = jwtTokenUtil.getUsernameFromToken(jwtToken)
 //                println("username from jwt token $username is $jwtToken")
                 email = username
+//                println(username)
             }
 
             catch (e: IllegalArgumentException) {
@@ -77,6 +78,7 @@ class JwtRequestFilter : OncePerRequestFilter() {
                 // that the current user is authenticated. So it passes the
                 // Spring Security Configurations successfully.
                 SecurityContextHolder.getContext().authentication = usernamePasswordAuthenticationToken
+//                println("user authenticated")
             }
         }
         chain.doFilter(request, response)

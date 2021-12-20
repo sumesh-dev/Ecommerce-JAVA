@@ -1,5 +1,6 @@
 package com.ecommerce.userservice.controller
 
+import com.ecommerce.userservice.config.JwtRequestFilter
 import com.ecommerce.userservice.models.Product
 import com.ecommerce.userservice.service.CartService
 import org.bson.types.ObjectId
@@ -15,18 +16,27 @@ class CartController {
     @Autowired
     private lateinit var cartService: CartService
 
-    @GetMapping("/{product_id}/{email}")
-    fun addToCart(@PathVariable product_id:ObjectId,@PathVariable email:String):ResponseEntity<String> {
-        return ResponseEntity<String>(cartService.addToCart(product_id, email), HttpStatus.OK)
+    @Autowired
+    private val jwtRequestFilter: JwtRequestFilter? = null
+
+    @GetMapping("/{product_id}")
+    fun addToCart(@PathVariable product_id:ObjectId):ResponseEntity<String> {
+        return ResponseEntity<String>(jwtRequestFilter?.let { cartService.addToCart(product_id, it.email) }, HttpStatus.OK)
     }
 
-    @DeleteMapping("/{product_id}/{email}")
-    fun deleteToCart(@PathVariable product_id:ObjectId,@PathVariable email:String):ResponseEntity<String>{
-       return ResponseEntity<String>(cartService.deleteToCart(product_id,email),HttpStatus.OK)
+    @DeleteMapping("/{product_id}")
+    fun deleteToCart(@PathVariable product_id:ObjectId):ResponseEntity<String>{
+       return ResponseEntity<String>(jwtRequestFilter?.let { cartService.deleteToCart(product_id, it.email) },HttpStatus.OK)
     }
 
-    @GetMapping("/showAllItemInCart/{email}")
-    fun showAllItemInCart(@PathVariable email:String):ResponseEntity<MutableList<Product>>?{
-       return ResponseEntity<MutableList<Product>>(cartService.showAllItemsInCart(email),HttpStatus.OK)
+    @GetMapping("/showAllItemInCart")
+    fun showAllItemInCart():ResponseEntity<MutableList<Product>>?{
+       return ResponseEntity<MutableList<Product>>(jwtRequestFilter?.let { cartService.showAllItemsInCart(it.email) },HttpStatus.OK)
+    }
+
+//    @CrossOrigin(origins = ["http://localhost:9005"])
+    @GetMapping("/showProductIDinCart/{email}")
+    fun showProductIdCart(@PathVariable email: String):ResponseEntity<MutableList<ObjectId>>?{
+        return ResponseEntity<MutableList<ObjectId>>(cartService.showProductIdInCart(email),HttpStatus.OK)
     }
 }

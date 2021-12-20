@@ -28,9 +28,22 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.fasterxml.jackson.module</groupId>
 			<artifactId>jackson-module-kotlin</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.jetbrains.kotlin</groupId>
 			<artifactId>kotlin-reflect</artifactId>
@@ -68,11 +81,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.11.0.rc1</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.fasterxml.jackson.core</groupId>-->
+<!--			<artifactId>jackson-databind</artifactId>-->
+<!--			<version>2.11.0.rc1</version>-->
+<!--		</dependency>-->
 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -80,10 +93,15 @@
 		</dependency>
 
 		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt</artifactId>
-			<version>0.9.1</version>
-			<scope>compile</scope>
+			<groupId>io.awspring.cloud</groupId>
+			<artifactId>spring-cloud-aws-context</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.awspring.cloud</groupId>
+			<artifactId>spring-cloud-aws-autoconfigure</artifactId>
+			<version>2.3.1</version>
 		</dependency>
 
 	</dependencies>
@@ -136,6 +154,7 @@
 				</dependencies>
 			</plugin>
 		</plugins>
+		<finalName>product-service</finalName>
 	</build>
 
 	<repositories>

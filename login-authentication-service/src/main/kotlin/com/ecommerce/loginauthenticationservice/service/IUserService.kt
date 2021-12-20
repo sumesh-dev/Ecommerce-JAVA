@@ -4,4 +4,5 @@ import com.ecommerce.loginauthenticationservice.models.UserDao
 
 interface IUserService {
     fun addUser(userDao: UserDao):String?
+    fun addDefaultAccount():String
 }

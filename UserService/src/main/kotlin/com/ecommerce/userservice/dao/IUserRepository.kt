@@ -11,9 +11,9 @@ interface IUserRepository: MongoRepository<UserDao,ObjectId>{
     fun findByEmail(email: String?): UserDao?
 //    @Query("db.users.remove({email:?0})")
 //    fun deleteByEmail(email: String)
-    @Query("{role:seller}")
+    @Query("{role:ROLE_seller}")
     fun findAllSeller(): MutableList<UserDao>?
-    @Query("{role:customer}")
+    @Query("{role:ROLE_customer}")
     fun findAllCustomer(): MutableList<UserDao>?
 
 }

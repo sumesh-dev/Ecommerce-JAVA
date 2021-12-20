@@ -92,6 +92,7 @@
 				</dependencies>
 			</plugin>
 		</plugins>
+		<finalName>eureka-server</finalName>
 	</build>
 	<repositories>
 		<repository>

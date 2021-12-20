@@ -6,9 +6,10 @@ spring:
     name: login-authentication
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: ecommerce
+      uri: mongodb+srv://sumesh_spring:sumesh123@cluster0.roe8a.mongodb.net/ecommerce?retryWrites=true&w=majority
+#      host: localhost
+#      port: 27017
+#      database: ecommerce
 
 eureka:
   instance:
@@ -17,4 +18,6 @@ eureka:
 jwt:
   secret: "asdfghjkikjuhygfrd"
 
-
+account:
+  email: "adminaccount1@gmail.com"
+  password: "123456789"

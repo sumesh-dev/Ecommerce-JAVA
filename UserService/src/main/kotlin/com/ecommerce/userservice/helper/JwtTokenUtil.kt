@@ -17,6 +17,7 @@ class JwtTokenUtil : Serializable {
 
         val JWT_TOKEN_VALIDITY = (5 * 60 * 60).toLong()
     }
+
     @Value("\${jwt.secret}")
     private val secret: String? = null
 

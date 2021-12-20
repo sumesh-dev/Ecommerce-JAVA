@@ -137,6 +137,7 @@
 				</dependencies>
 			</plugin>
 		</plugins>
+		<finalName>login-authentication-service</finalName>
 	</build>
 
 	<repositories>

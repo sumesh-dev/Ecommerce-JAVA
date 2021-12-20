@@ -36,7 +36,23 @@ class AuthenticationController {
 
     @PostMapping("/signup")
     fun addUser(@Valid @RequestBody userDao: UserDao): ResponseEntity<String> {
-        return ResponseEntity<String>(iUserService.addUser(userDao), HttpStatus.OK)
+        return if(userDao.role.lowercase().equals("admin")||((userDao.role.lowercase()!="customer")&&(userDao.role.lowercase()!="seller"))){
+            ResponseEntity<String>("Role can either customer or seller", HttpStatus.BAD_REQUEST)
+        } else
+            ResponseEntity<String>(iUserService.addUser(userDao), HttpStatus.OK)
+    }
+
+    @GetMapping("/activeDefaultAccount")
+    fun addDefaultAccount(): ResponseEntity<String> {
+       return ResponseEntity<String>(iUserService.addDefaultAccount(),HttpStatus.OK)
+    }
+
+    @PostMapping("/adminSignup")
+    fun adminSignup(@Valid @RequestBody userDao: UserDao):ResponseEntity<String> {
+        return if((userDao.role.lowercase()!="admin")&&(userDao.role.lowercase()!="customer")&&(userDao.role.lowercase()!="seller")){
+            ResponseEntity<String>("Role can only be customer or seller or admin", HttpStatus.BAD_REQUEST)
+        } else
+            ResponseEntity<String>(iUserService.addUser(userDao), HttpStatus.OK)
     }
 
     @PostMapping("/login")

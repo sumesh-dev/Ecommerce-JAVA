@@ -7,6 +7,7 @@ import com.ecommerce.userservice.models.UserDao
 import org.bson.types.ObjectId
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import org.springframework.web.client.RestTemplate
 
 @Service
 class CartServiceImpl: CartService {
@@ -17,42 +18,56 @@ class CartServiceImpl: CartService {
     @Autowired
     lateinit var productClient: ProductClient
 
-    override fun addToCart(product_id: ObjectId,email: String): String {
-          val userDao: UserDao? = userRepository.findByEmail(email)
+    @Autowired
+    private val restTemplate: RestTemplate? = null
+
+    override fun addToCart(product_id: ObjectId, email: String): String {
+        val userDao: UserDao? = userRepository.findByEmail(email)
         return if (userDao != null) {
-            userRepository.deleteById(userDao._id)
-            userRepository.save(UserDao(userDao.firstName,userDao.lastName,userDao.email,userDao.password,userDao.role,product_id))
+            userDao.productInCart?.add(product_id)
+            userRepository.save(userDao)
             "Product successfully added to cart"
-        } else{
+        } else {
             "error occurred"
         }
     }
 
-    override fun deleteToCart(product_id: ObjectId,email: String): String {
+    override fun deleteToCart(product_id: ObjectId, email: String): String {
         val userDao: UserDao? = userRepository.findByEmail(email)
         return if (userDao != null) {
             userDao.productInCart?.remove(product_id)
 //            userRepository.deleteById(userDao._id)
             userRepository.save(userDao)
             "Product successfully deleted from cart"
-        } else{
+        } else {
             "error occurred"
         }
 
     }
 
     override fun showAllItemsInCart(email: String): MutableList<Product>? {
-        val list:MutableList<Product>?= null
+        val list: MutableList<Product> = mutableListOf<Product>()
         val cartProduct: MutableList<ObjectId>? = userRepository.findByEmail(email)?.productInCart
-        return if (cartProduct != null) {
-            for(product_id in cartProduct){
-                list?.add(productClient.getProduct(product_id))
+        if (cartProduct != null) {
+            for (product_id in cartProduct) {
+                var product = productClient.getProduct(product_id.toString())
+                    list.add(product)
             }
-            list
-        } else{
-            null
+//            println(list)
+//            println(list.toString())
         }
-
+        return list
     }
 
+    override fun showProductIdInCart(email: String): MutableList<ObjectId>? {
+        //        if (cartProduct != null) {
+//            if(cartProduct.size > 0){
+//                return cartProduct
+//            }
+//            else{
+//                return null
+//            }
+//        }
+        return userRepository.findByEmail(email)?.productInCart
+    }
 }

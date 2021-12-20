@@ -8,5 +8,6 @@ interface CartService {
     fun addToCart(product_id:ObjectId,email:String):String
     fun deleteToCart(product_id: ObjectId,email: String):String
     fun showAllItemsInCart(email: String):MutableList<Product>?
+    fun showProductIdInCart(email: String):MutableList<ObjectId>?
 
 }

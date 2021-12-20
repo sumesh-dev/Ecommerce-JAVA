@@ -2,6 +2,7 @@ package com.ecommerce.userservice.service
 
 import com.ecommerce.userservice.dao.IUserRepository
 import com.ecommerce.userservice.models.UserDao
+import org.bson.types.ObjectId
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -28,7 +29,6 @@ class UserServiceImpl : IUserService {
         val user: UserDao? = userRepository.findByEmail(email)
         return if (user!==null) {
             userRepository.deleteById(user._id)
-            //delete those product also which user added
             "user deleted successfully"
         } else{
             "user does not exist"
@@ -54,12 +54,33 @@ class UserServiceImpl : IUserService {
     override fun updateUserByEmail(email: String, userDao: UserDao): String {
         val user: UserDao? = userRepository.findByEmail(email)
         return if (user!==null) {
-//            userRepository.deleteById(user._id)
-            userRepository.save(UserDao(user._id,userDao.firstName,userDao.lastName,userDao.email,userDao.password,userDao.role,null))
-            "user updated successfully"
-        } else {
-            "user does not exist"
-        }
+    //            userRepository.deleteById(user._id)
+//            println(userDao.toString())
+//            println(user.toString())
+            return if(userDao.email!=user.email||userDao.role!=user.role.replace("ROLE_","")){
+                "you cannot change email or role"
+            }
+            else{
+                userRepository.save(UserDao(user._id,userDao.firstName,userDao.lastName,userDao.email,userDao.password,userDao.role,null))
+                "user updated successfully"
+                }
+            }
+            else {
+                "user does not exist"
+            }
     }
+
+//    override fun updateOrder(email: String, id: ObjectId): String {
+//       val user: UserDao? = userRepository.findByEmail(email)
+//        return if(user!=null) {
+//            user.orders?.add(id)
+//            userRepository.save(user)
+//            "updated successfully"
+//        }
+//        else{
+//            "error occurred"
+//        }
+//    }
+
 
 }

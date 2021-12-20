@@ -18,16 +18,19 @@ class SecurityConfig : WebSecurityConfigurerAdapter(){
     override fun configure(httpSecurity: HttpSecurity) {
 
         httpSecurity
-            .csrf().disable()
+            .csrf().ignoringAntMatchers("/cart/showProductIDinCart/*").disable()
 //            .cors().disable()
             .authorizeRequests()
+            .antMatchers("/cart/showProductIDinCart/*").permitAll()
+            .antMatchers("/users/getAllCustomer","/users/getAllSeller").hasRole("admin")
             .anyRequest()
             .authenticated()
-            .antMatchers("users/getAllCustomer","users/getAllSeller").hasRole("admin")
             .and()
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java)
+
+//        httpSecurity.csrf().ignoringAntMatchers()
     }
 
 }

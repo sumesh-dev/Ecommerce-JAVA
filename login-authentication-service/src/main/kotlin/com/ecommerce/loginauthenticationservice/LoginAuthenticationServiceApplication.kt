@@ -1,5 +1,6 @@
 package com.ecommerce.loginauthenticationservice
 
+import com.ecommerce.loginauthenticationservice.service.UserServiceImpl
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer
 import org.bson.types.ObjectId
 import org.springframework.boot.autoconfigure.SpringBootApplication
