@@ -1,5 +1,5 @@
 server:
-  port: 9003
+  port: ${PORT:9003}
 
 spring:
   application:
@@ -11,17 +11,17 @@ spring:
       max-request-size: 20MB
   data:
     mongodb:
-      uri: mongodb+srv://sumesh_spring:sumesh123@cluster0.roe8a.mongodb.net/ecommerce?retryWrites=true&w=majority
+      uri: ${MONGODB_URL}
 #        host: localhost
 #        port: 27017
 #        database: ecommerce
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: ${APPDOMAIN:localhost}
   client:
     serviceUrl:
-      defaultZone: http://127.0.0.1:8761/eureka/
+      defaultZone: ${EUREKA_SERVER_URL:http://127.0.0.1:8761/eureka/}
 
 jwt:
   secret: "asdfghjkikjuhygfrd"
@@ -29,18 +29,13 @@ jwt:
 cloud:
   aws:
     credentials:
-      access-key: AKIATHQTSD2T7KRLYPHR
-      secret-key: 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
+      access-key: ${AWS_ACCESS_KEY}
+      secret-key: ${AWS_SECRET_KEY}
     region:
-      static: ap-south-1
+      static: ${AWS_REGION_STATIC}
     stack:
       auto: false
 
 aws:
   s3:
-    bucket: ecommerce-image-bucket1
-
-#Access Key ID:
-#  AKIATHQTSD2T7KRLYPHR
-#Secret Access Key:
-#  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
+    bucket: ${AWS_BUCKET_NAME}

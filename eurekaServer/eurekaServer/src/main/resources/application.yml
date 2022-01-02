@@ -1,5 +1,5 @@
 server:
-  port: 8761
+  port: ${PORT:8761}
 
 eureka:
   client:
@@ -9,10 +9,6 @@ eureka:
   server:
     wait-time-in-ms-when-sync-empty: 0
 
-#  instance:
-#    hostname: ip-172-31-1-106.ap-south-1.compute.internal
-
   instance:
-    hostname: localhost
-
-
+#    prefer-ip-address: true
+    hostname: ${APPDOMAIN:localhost}

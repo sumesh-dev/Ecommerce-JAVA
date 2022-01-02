@@ -1,12 +1,12 @@
 server:
-  port: 9002
+  port: ${PORT:9002}
 
 spring:
   application:
     name: user-service
   data:
     mongodb:
-      uri: mongodb+srv://sumesh_spring:sumesh123@cluster0.roe8a.mongodb.net/ecommerce?retryWrites=true&w=majority
+      uri: ${MONGODB_URL}
 #      host: localhost
 #      port: 27017
 #      database: ecommerce
@@ -14,6 +14,15 @@ spring:
 eureka:
   instance:
     hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL:http://127.0.0.1:8761/eureka/}
 
 jwt:
   secret: "asdfghjkikjuhygfrd"
+
+#Feign:
+#  Product_url: ${PRODUCT_SERVICE_URL:http://localhost:9003/product}
+
+Feign:
+  Product_url: ${PRODUCT_SERVICE_URL:http://product-service/product}

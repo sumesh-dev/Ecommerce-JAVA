@@ -10,6 +10,7 @@ import org.json.JSONObject
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
+import java.net.URI
 import java.time.LocalDateTime
 import java.util.*
 
@@ -28,9 +29,12 @@ class payService: IPayService{
     @Value("\${razorpay.secret}")
     private val secret: String? = null
 
+    @Value("\${Feign.User_url}")
+    lateinit var userUrl: URI
+
     override fun createOrder(email: String, userAmount: UserAmount): String {
 
-        val products: MutableList<ObjectId> = userClient.getProductsFromCart(email)
+        val products: MutableList<ObjectId> = userClient.getProductsFromCart(userUrl,email)
         if(products.size > 0) {
             val client = RazorpayClient(key, secret)
             val txnid = UUID.randomUUID().toString().replace("-", "")
@@ -41,16 +45,22 @@ class payService: IPayService{
             options.put("receipt", txnid)
 
             // creating order
-            val order = client.Orders.create(options)
-            println(order.toString())
-            // save the order info in database
-            ordersRepository.save(
-                Orders(
-                    email, userAmount.amount, txnid, LocalDateTime.now(), products,
-                    order.get("id") as String, "created", null
+            try {
+                val order = client.Orders.create(options)
+//            println(order.toString())
+                // save the order info in database
+                ordersRepository.save(
+                    Orders(
+                        email, userAmount.amount, txnid, LocalDateTime.now(), products,
+                        order.get("id") as String, "created", null
+                    )
                 )
-            )
-            return order.toString()
+                products.forEach { userClient.deleteProductsFromCart(userUrl, it) }
+                return order.toString()
+            }
+            catch(e:Exception){
+               return "error occured"
+            }
         }
         else{
             return "no Product in cart"
@@ -64,4 +74,5 @@ class payService: IPayService{
         ordersRepository.save(order)
         return "updated successfully"
     }
+
 }

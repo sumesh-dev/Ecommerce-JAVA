@@ -2,7 +2,9 @@ package com.ecommerce.userservice.service
 
 import com.ecommerce.userservice.dao.IUserRepository
 import com.ecommerce.userservice.models.UserDao
+import com.ecommerce.userservice.models.UserDaoResponse
 import org.bson.types.ObjectId
+import org.json.JSONObject
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -21,8 +23,17 @@ class UserServiceImpl : IUserService {
     }
 
     override fun getUserByEmail(email: String): Any {
-        return userRepository.findByEmail(email) ?: "user does not exist"
-
+//        return userRepository.findByEmail(email) ?: "user does not exist"
+        val userDao:UserDao? = userRepository.findByEmail(email)
+        return if(userDao!=null){
+            return UserDaoResponse(userDao._id.toString(),userDao.firstName,userDao.lastName,userDao.email,userDao.role.substringAfter("_"),
+                userDao.productInCart.toString().replace("[","").replace("]","").replace(" ","").split(","))
+//            userDao._id = userDao._id.toString();
+//            return """{"_id": "${userDao._id.toString()}","firstName": "${userDao.firstName}", "lastName":"${userDao.lastName}", "email":"${userDao.email}","role":"${userDao.role.substringAfter("_")}", "productInCart":"${userDao.productInCart?.forEach { \"+$it+\" }}"}""";
+        }
+        else{
+            "user does not exist"
+        }
     }
 
     override fun deleteUserByEmail(email: String): String {

@@ -34,7 +34,7 @@ class UserController {
         return ResponseEntity<String>(jwtRequestFilter?.email?.let { iUserService.deleteUserByEmail(it) }, HttpStatus.OK)
     }
 
-    @PutMapping("/")
+    @PatchMapping("/")
     fun updateUserByEmail(@Valid @RequestBody userDao: UserDao): ResponseEntity<String> {
         return ResponseEntity<String>(jwtRequestFilter?.email?.let { iUserService.updateUserByEmail(it,userDao) }, HttpStatus.OK)
     }

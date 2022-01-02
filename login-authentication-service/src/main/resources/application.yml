@@ -1,23 +1,27 @@
 server:
-  port: 9001
+  port: ${PORT:9001}
 
 spring:
   application:
     name: login-authentication
   data:
     mongodb:
-      uri: mongodb+srv://sumesh_spring:sumesh123@cluster0.roe8a.mongodb.net/ecommerce?retryWrites=true&w=majority
+      uri: ${MONGODB_URL}
 #      host: localhost
 #      port: 27017
 #      database: ecommerce
 
 eureka:
   instance:
-    hostname: localhost
+#    prefer-ip-address: true
+    hostname: ${APPDOMAIN:localhost}
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
 
 jwt:
   secret: "asdfghjkikjuhygfrd"
 
 account:
-  email: "adminaccount1@gmail.com"
-  password: "123456789"
+  email: ${ADMIN_EMAIL:"adminaccount1@gmail.com"}
+  password: ${ADMIN_PASSWORD:"123456789"}

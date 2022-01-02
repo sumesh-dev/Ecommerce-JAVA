@@ -6,8 +6,10 @@ import com.ecommerce.userservice.models.Product
 import com.ecommerce.userservice.models.UserDao
 import org.bson.types.ObjectId
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
+import java.net.URI
 
 @Service
 class CartServiceImpl: CartService {
@@ -20,6 +22,9 @@ class CartServiceImpl: CartService {
 
     @Autowired
     private val restTemplate: RestTemplate? = null
+
+    @Value("\${Feign.Product_url}")
+    lateinit var productUrl:URI
 
     override fun addToCart(product_id: ObjectId, email: String): String {
         val userDao: UserDao? = userRepository.findByEmail(email)
@@ -50,7 +55,7 @@ class CartServiceImpl: CartService {
         val cartProduct: MutableList<ObjectId>? = userRepository.findByEmail(email)?.productInCart
         if (cartProduct != null) {
             for (product_id in cartProduct) {
-                var product = productClient.getProduct(product_id.toString())
+                var product = productClient.getProduct(productUrl,product_id.toString())
                     list.add(product)
             }
 //            println(list)

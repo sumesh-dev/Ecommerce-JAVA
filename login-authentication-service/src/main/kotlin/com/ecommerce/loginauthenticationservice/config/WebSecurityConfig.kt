@@ -1,6 +1,7 @@
 package com.ecommerce.loginauthenticationservice.config
 
 import com.ecommerce.loginauthenticationservice.service.CustomUserDetailsService
+import org.json.JSONObject
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -13,6 +14,10 @@ import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import org.springframework.web.cors.CorsConfiguration
+import java.time.LocalDateTime
+import javax.servlet.http.HttpServletResponse
+
 
 @Configuration
 @EnableWebSecurity
@@ -39,11 +44,12 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
     @Throws(Exception::class)
     override fun configure(httpSecurity: HttpSecurity) {
 
-        httpSecurity
-            .csrf().ignoringAntMatchers("/login","/signup","/adminSignup")
+//        httpSecurity
+//            .csrf().ignoringAntMatchers("/login","/signup","/adminSignup")
 
+        httpSecurity.csrf().disable()
         httpSecurity
-            .cors().disable()
+//            .cors().disable()
             .authorizeRequests()
             .antMatchers("/adminSignup").hasRole("admin")
             .anyRequest()
@@ -53,6 +59,29 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
         httpSecurity.addFilterBefore(jwtRequestFilter,UsernamePasswordAuthenticationFilter::class.java)
+
+        httpSecurity
+            .exceptionHandling()
+            .accessDeniedHandler{ request, response, e ->
+                response.contentType = "application/json;charset=UTF-8"
+                response.status = HttpServletResponse.SC_FORBIDDEN
+                response.writer.write(
+                    JSONObject()
+                        .put("timestamp", LocalDateTime.now())
+                        .put("message", "Access denied")
+                        .toString()
+                )
+            }
+            .authenticationEntryPoint { request, response, e ->
+                response.contentType = "application/json;charset=UTF-8"
+                response.status = HttpServletResponse.SC_FORBIDDEN
+                response.writer.write(
+                    JSONObject()
+                        .put("timestamp", LocalDateTime.now())
+                        .put("message", "Access denied")
+                        .toString()
+                )
+            }
 
     }
 

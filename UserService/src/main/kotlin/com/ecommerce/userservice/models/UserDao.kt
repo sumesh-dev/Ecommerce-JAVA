@@ -36,10 +36,7 @@ class UserDao{
     @field:NotBlank(message = "Role is mandatory")
     lateinit var role:String
 
-//    @DocumentReference(collection = "Products")
     var productInCart: MutableList<ObjectId>?= mutableListOf<ObjectId>()
-//    @DocumentReference
-//     var orders: MutableList<ObjectId>? = mutableListOf<ObjectId>()
 
     constructor(
         _id: ObjectId, firstName: String, lastName: String,email: String, password: String, role: String, productInCart:ObjectId?)

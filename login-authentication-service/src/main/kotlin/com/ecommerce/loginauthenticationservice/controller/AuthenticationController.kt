@@ -12,7 +12,6 @@ import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.web.bind.annotation.*
 import javax.servlet.http.Cookie
 import javax.servlet.http.HttpServletRequest
@@ -20,6 +19,7 @@ import javax.servlet.http.HttpServletResponse
 import javax.validation.Valid
 
 @RestController
+//@CrossOrigin(origins = ["*"],allowedHeaders = ["*"], methods = [RequestMethod.GET,RequestMethod.POST])
 class AuthenticationController {
 
     @Autowired
@@ -34,9 +34,10 @@ class AuthenticationController {
     @Autowired
     private lateinit var iUserService: IUserService
 
+//    @CrossOrigin(origins = ["*"], allowedHeaders = ["*"])
     @PostMapping("/signup")
     fun addUser(@Valid @RequestBody userDao: UserDao): ResponseEntity<String> {
-        return if(userDao.role.lowercase().equals("admin")||((userDao.role.lowercase()!="customer")&&(userDao.role.lowercase()!="seller"))){
+        return if(userDao.role.lowercase() == "admin" ||((userDao.role.lowercase()!="customer")&&(userDao.role.lowercase()!="seller"))){
             ResponseEntity<String>("Role can either customer or seller", HttpStatus.BAD_REQUEST)
         } else
             ResponseEntity<String>(iUserService.addUser(userDao), HttpStatus.OK)
@@ -55,6 +56,7 @@ class AuthenticationController {
             ResponseEntity<String>(iUserService.addUser(userDao), HttpStatus.OK)
     }
 
+//    @CrossOrigin(origins = ["*"], allowedHeaders = ["*"], methods = [RequestMethod.POST])
     @PostMapping("/login")
     @ResponseBody
     @Throws(Exception::class)
@@ -73,6 +75,7 @@ class AuthenticationController {
         val userDetails: UserDetails = this.customUserDetailsService.loadUserByUsername(jwtRequest.email)
         val token: String? = this.jwtTokenUtil.generateToken(userDetails)
         val cookie = Cookie("JwtToken",token)
+        cookie.maxAge = 5*60*60*1000
         response.addCookie(cookie)
         return ResponseEntity<String>("Login successfully",HttpStatus.OK)
     }

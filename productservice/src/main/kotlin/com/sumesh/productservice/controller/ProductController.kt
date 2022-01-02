@@ -15,6 +15,7 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/product")
+//@CrossOrigin(origins = ["*"], allowedHeaders = ["*"])
 class ProductController {
 
     @Autowired
@@ -36,6 +37,8 @@ class ProductController {
         }
         return ResponseEntity<String>(iProductService.uploadFile(file),HttpStatus.OK)
     }
+
+
 
     @PostMapping("/addProduct")
     fun addNewProduct(@Valid @RequestBody product: Product):ResponseEntity<String>{
