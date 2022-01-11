@@ -7,7 +7,7 @@ eureka:
     hostname: ${APPDOMAIN:localhost}
   client:
     serviceUrl:
-      defaultZone: ${EUREKA_SERVER_URL:http://127.0.0.1:8761/eureka/}
+      defaultZone: Eurekaserver-env-2.eba-fipchgfv.us-east-1.elasticbeanstalk.com/eureka
 
 spring:
   application:
@@ -19,7 +19,7 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]':
-            allowedOrigins: ${REACT_APP_URL:"http://localhost:3000"}
+            allowedOrigins: ${REACT_APP_URL:http://localhost:3000}
             allowedMethods:
               - GET
               - POST
@@ -33,18 +33,18 @@ spring:
           lower-case-service-id: true
       routes:
         - id: user-service
-          uri: lb://user-service
+          uri: http://Userservice-env.eba-kguuzuph.us-east-1.elasticbeanstalk.com
           predicates:
             - Path=/users/**, /cart/**
         - id: product-service
-          uri: lb://product-service
+          uri: http://Productservice-env.eba-9x22mgz2.us-east-1.elasticbeanstalk.com
           predicates:
             - Path=/product/**
         - id: login-authentication
-          uri: lb://login-authentication
+          uri: http://Loginservice-env.eba-kryhew59.us-east-1.elasticbeanstalk.com
           predicates:
             - Path=/login,/signup,/logout,/adminSignup,/activeDefaultAccount
         - id: payment-order-service
-          uri: lb://payment-order-service
+          uri: http://Paymentandorderservice-env.eba-mpa2bgig.us-east-1.elasticbeanstalk.com
           predicates:
             - Path=/payment/**,/order/**

@@ -7,9 +7,6 @@ spring:
   data:
     mongodb:
       uri: ${MONGODB_URL}
-#      host: localhost
-#      port: 27017
-#      database: ecommerce
 
 eureka:
   instance:
@@ -25,3 +22,6 @@ jwt:
 account:
   email: ${ADMIN_EMAIL:"adminaccount1@gmail.com"}
   password: ${ADMIN_PASSWORD:"123456789"}
+
+allowed:
+  origin: ${REACT_APP_URL:http://localhost:3000}

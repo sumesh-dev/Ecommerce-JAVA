@@ -32,13 +32,16 @@ class payService: IPayService{
     @Value("\${Feign.User_url}")
     lateinit var userUrl: URI
 
+    @Value("\${jwt.secret}")
+    private lateinit var secretCode: String
+
     override fun createOrder(email: String, userAmount: UserAmount): String {
 
-        val products: MutableList<ObjectId> = userClient.getProductsFromCart(userUrl,email)
+        val products: MutableList<ObjectId> = userClient.getProductsFromCart(userUrl,secretCode,email)
         if(products.size > 0) {
             val client = RazorpayClient(key, secret)
             val txnid = UUID.randomUUID().toString().replace("-", "")
-            println(txnid)
+//            println(txnid)
             val options = JSONObject()
             options.put("amount", userAmount.amount * 100)
             options.put("currency", "INR")
@@ -55,10 +58,11 @@ class payService: IPayService{
                         order.get("id") as String, "created", null
                     )
                 )
-                products.forEach { userClient.deleteProductsFromCart(userUrl, it) }
+//                userClient.deleteProductsFromCart(userUrl,secretCode,email)
                 return order.toString()
             }
             catch(e:Exception){
+                println(e)
                return "error occured"
             }
         }
@@ -67,11 +71,13 @@ class payService: IPayService{
         }
     }
 
-    override fun updateOrder(orderId: String, paymentId: String, status: String): String {
+    override fun updateOrder(orderId: String, paymentId: String, status: String,email:String): String {
+        println("update order ${orderId}, ${paymentId}, ${status}")
         val order = ordersRepository.findByRazorpayOrderId(orderId)
         order.paymentId = paymentId
         order.paymentStatus = status
         ordersRepository.save(order)
+        userClient.deleteProductsFromCart(userUrl,secretCode,email)
         return "updated successfully"
     }
 

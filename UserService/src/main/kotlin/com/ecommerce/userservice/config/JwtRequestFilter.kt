@@ -35,12 +35,20 @@ class JwtRequestFilter : OncePerRequestFilter() {
         response: HttpServletResponse,
         chain: FilterChain
     ) {
+        val authorizationHeader:String? = request.getHeader("Authorization")
+
 //        val requestTokenHeader: String? = request.getHeader("Authorization")
            var cookie: Cookie? = request.cookies?.find { c->c.name=="JwtToken" }
 //            print("${cookie?.name} and ${cookie?.value}" )
 
         var username: String? = null
         var jwtToken: String? = cookie?.value
+//        println(jwtToken)
+
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ") && jwtToken===null) {
+            jwtToken = authorizationHeader.substring(7);
+        }
+
         if (jwtToken != null) {
             try {
                 username = jwtTokenUtil.getUsernameFromToken(jwtToken)

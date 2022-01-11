@@ -9,5 +9,5 @@ interface CartService {
     fun deleteToCart(product_id: ObjectId,email: String):String
     fun showAllItemsInCart(email: String):MutableList<Product>?
     fun showProductIdInCart(email: String):MutableList<ObjectId>?
-
+    fun deleteAllProductFromCart(email:String):String
 }

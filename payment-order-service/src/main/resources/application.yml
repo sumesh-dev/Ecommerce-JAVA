@@ -1,9 +1,9 @@
 server:
-  port: ${PORT:9002}
+  port: ${PORT:9005}
 
 spring:
   application:
-    name: user-service
+    name: payment-order-service
   data:
     mongodb:
       uri: ${MONGODB_URL}
@@ -21,11 +21,14 @@ eureka:
 jwt:
   secret: "asdfghjkikjuhygfrd"
 
-#Feign:
-#  Product_url: ${PRODUCT_SERVICE_URL:http://localhost:9003/product}
+
+razorPay:
+  key: ${RAZORPAY_KEY:rzp_test_XZmE9htlGHPrr3}
+  secret: ${RAZORPAY_SECRET:uOeBhzaxVD0LwctitTtF4JfG}
 
 Feign:
-  Product_url: ${PRODUCT_SERVICE_URL:http://product-service/product}
+  User_url: ${USER_SERVICE_URL:http://user-service/}
+  Product_url: ${PRODUCT_SRVICE_URL:http://product-service/}
 
 allowed:
   origin: ${REACT_APP_URL:http://localhost:3000}

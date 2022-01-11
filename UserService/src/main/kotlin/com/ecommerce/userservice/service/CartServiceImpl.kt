@@ -26,6 +26,9 @@ class CartServiceImpl: CartService {
     @Value("\${Feign.Product_url}")
     lateinit var productUrl:URI
 
+    @Value("\${jwt.secret}")
+    private val secret: String? = null
+
     override fun addToCart(product_id: ObjectId, email: String): String {
         val userDao: UserDao? = userRepository.findByEmail(email)
         return if (userDao != null) {
@@ -64,15 +67,19 @@ class CartServiceImpl: CartService {
         return list
     }
 
-    override fun showProductIdInCart(email: String): MutableList<ObjectId>? {
-        //        if (cartProduct != null) {
-//            if(cartProduct.size > 0){
-//                return cartProduct
-//            }
-//            else{
-//                return null
-//            }
-//        }
+    override fun showProductIdInCart(email: String):MutableList<ObjectId>? {
         return userRepository.findByEmail(email)?.productInCart
+    }
+
+    override fun deleteAllProductFromCart(email: String): String {
+
+        val userDao: UserDao? = userRepository.findByEmail(email)
+            return if (userDao != null) {
+                userDao.productInCart?.forEach { deleteToCart(it, email) }
+                 "products deleted"
+            }
+            else {
+                "error occurred"
+            }
     }
 }

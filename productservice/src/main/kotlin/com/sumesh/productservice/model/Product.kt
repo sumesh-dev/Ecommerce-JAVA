@@ -24,6 +24,7 @@ class Product{
 
     @field:NotNull(message = "give some description")
     lateinit var desc: String
+    
 
 //    @field:NotNull(message="Only authorize user can add the product")
      lateinit var addBy: ObjectId

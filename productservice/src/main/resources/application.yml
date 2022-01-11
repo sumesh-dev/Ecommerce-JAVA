@@ -29,13 +29,16 @@ jwt:
 cloud:
   aws:
     credentials:
-      access-key: ${AWS_ACCESS_KEY}
-      secret-key: ${AWS_SECRET_KEY}
+      access-key: ${AWS_ACCESS_KEY:AKIATHQTSD2T7KRLYPHR}
+      secret-key: ${AWS_SECRET_KEY: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}
     region:
-      static: ${AWS_REGION_STATIC}
+      static: ${AWS_REGION_STATIC:ap-south-1}
     stack:
       auto: false
 
 aws:
   s3:
-    bucket: ${AWS_BUCKET_NAME}
+    bucket: ${AWS_BUCKET_NAME:ecommerce-image-bucket1}
+
+allowed:
+  origin: ${REACT_APP_URL:http://localhost:3000}

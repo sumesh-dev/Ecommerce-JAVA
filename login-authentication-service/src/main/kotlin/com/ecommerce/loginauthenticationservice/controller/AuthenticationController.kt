@@ -6,6 +6,7 @@ import com.ecommerce.loginauthenticationservice.models.UserDao
 import com.ecommerce.loginauthenticationservice.service.CustomUserDetailsService
 import com.ecommerce.loginauthenticationservice.service.IUserService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
@@ -19,7 +20,6 @@ import javax.servlet.http.HttpServletResponse
 import javax.validation.Valid
 
 @RestController
-//@CrossOrigin(origins = ["*"],allowedHeaders = ["*"], methods = [RequestMethod.GET,RequestMethod.POST])
 class AuthenticationController {
 
     @Autowired
@@ -56,11 +56,11 @@ class AuthenticationController {
             ResponseEntity<String>(iUserService.addUser(userDao), HttpStatus.OK)
     }
 
-//    @CrossOrigin(origins = ["*"], allowedHeaders = ["*"], methods = [RequestMethod.POST])
     @PostMapping("/login")
     @ResponseBody
     @Throws(Exception::class)
-    fun createAuthenticationToken(@Valid @RequestBody jwtRequest: JwtRequest, response: HttpServletResponse): ResponseEntity<String> {
+    fun createAuthenticationToken(@Valid @RequestBody jwtRequest: JwtRequest, response: HttpServletResponse): ResponseEntity<MutableMap<String,String>> {
+        val data: MutableMap<String, String> = mutableMapOf()
         try{
             this.authenticationManager.authenticate(UsernamePasswordAuthenticationToken(jwtRequest.email,jwtRequest.password))
         }
@@ -68,16 +68,25 @@ class AuthenticationController {
 //            throw Exception("Invalid Credentials")
 //        }
         catch(e: BadCredentialsException){
-            return ResponseEntity<String>("Invalid Crendentials",HttpStatus.BAD_REQUEST)
+            data["msg"] = "Invalid Crendentials"
+            return ResponseEntity<MutableMap<String,String>>(data,HttpStatus.BAD_REQUEST)
 //            throw Exception("Invalid Credentials")
         }
 
         val userDetails: UserDetails = this.customUserDetailsService.loadUserByUsername(jwtRequest.email)
-        val token: String? = this.jwtTokenUtil.generateToken(userDetails)
+        val token: String = this.jwtTokenUtil.generateToken(userDetails)!!
         val cookie = Cookie("JwtToken",token)
         cookie.maxAge = 5*60*60*1000
+//        cookie.isHttpOnly = true
+//        cookie.secure = true
+//        cookie.domain = "ecommerce-react-app.s3.ap-south-1.amazonaws.com"
         response.addCookie(cookie)
-        return ResponseEntity<String>("Login successfully",HttpStatus.OK)
+//        val headers = response.getHeaders(HttpHeaders.SET_COOKIE)
+//        response.setHeader(HttpHeaders.SET_COOKIE,String.format("%s; %s", headers, "SameSite=NONE;Secure"))
+
+        data["msg"] = "Login successful"
+        data["JwtToken"] = token
+        return ResponseEntity<MutableMap<String,String>>(data,HttpStatus.OK)
     }
 
     @GetMapping("/logout")

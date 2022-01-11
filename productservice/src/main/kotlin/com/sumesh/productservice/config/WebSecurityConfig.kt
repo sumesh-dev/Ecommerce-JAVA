@@ -4,11 +4,16 @@ import org.json.JSONObject
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import kotlin.Throws
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.CorsConfigurationSource
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 import java.lang.Exception
 import java.time.LocalDateTime
 import javax.servlet.http.HttpServletResponse
@@ -18,6 +23,9 @@ import javax.servlet.http.HttpServletResponse
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 class WebSecurityConfig : WebSecurityConfigurerAdapter() {
 
+    @Value("\${allowed.origin}")
+    lateinit var origin: String
+
     @Autowired
     private val jwtRequestFilter: JwtRequestFilter? = null
 
@@ -26,7 +34,7 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
 
         httpSecurity
             .csrf().disable()
-//            .cors().disable()
+            .cors().and()
             .authorizeRequests()
             .antMatchers("/product/getProduct/**","/product/getAllProducts","/product/searchByName/**").permitAll()
             .antMatchers("/product/getAllProductsByMe").hasRole("seller")
@@ -62,5 +70,17 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
                 )
             }
 
+    }
+
+    @Bean
+    fun corsConfigurationSource(): CorsConfigurationSource? {
+        val configuration = CorsConfiguration()
+        configuration.allowedOrigins = mutableListOf(origin)
+        configuration.allowedMethods = mutableListOf("GET", "POST","DELETE","PATCH")
+        configuration.allowedHeaders = mutableListOf("*")
+        configuration.allowCredentials = true
+        val source = UrlBasedCorsConfigurationSource()
+        source.registerCorsConfiguration("/**", configuration)
+        return source
     }
 }
