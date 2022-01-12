@@ -23,8 +23,8 @@ jwt:
 
 
 razorPay:
-  key: ${RAZORPAY_KEY:rzp_test_XZmE9htlGHPrr3}
-  secret: ${RAZORPAY_SECRET:uOeBhzaxVD0LwctitTtF4JfG}
+  key: ${RAZORPAY_KEY}
+  secret: ${RAZORPAY_SECRET}
 
 Feign:
   User_url: ${USER_SERVICE_URL:http://user-service/}
